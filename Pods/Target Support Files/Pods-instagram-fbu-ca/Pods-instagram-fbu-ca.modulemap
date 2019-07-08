@@ -1,0 +1,6 @@
+framework module Pods_instagram_fbu_ca {
+  umbrella header "Pods-instagram-fbu-ca-umbrella.h"
+
+  export *
+  module * { export * }
+}
