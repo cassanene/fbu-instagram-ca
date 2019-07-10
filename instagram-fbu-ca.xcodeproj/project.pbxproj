@@ -17,6 +17,7 @@
 		341F4EE322D3F53500F1000C /* instagram_fbu_caUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 341F4EE222D3F53500F1000C /* instagram_fbu_caUITests.m */; };
 		344E7F3022D542EC00178C15 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344E7F2F22D542EC00178C15 /* SignUpViewController.m */; };
 		344E7F3522D5464E00178C15 /* Login2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344E7F3422D5464E00178C15 /* Login2ViewController.m */; };
+		344E7F3F22D5648700178C15 /* TimelineTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 344E7F3E22D5648700178C15 /* TimelineTableViewController.m */; };
 		371E7DDA732398D41591EE22 /* Pods_instagram_fbu_ca.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C4964D04238E86A9D675D2 /* Pods_instagram_fbu_ca.framework */; };
 		62C0366491CF0DF029E7254E /* Pods_instagram_fbu_caTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04577CD8BCCBED86958CAAC /* Pods_instagram_fbu_caTests.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,8 @@
 		344E7F2F22D542EC00178C15 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		344E7F3322D5464E00178C15 /* Login2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Login2ViewController.h; sourceTree = "<group>"; };
 		344E7F3422D5464E00178C15 /* Login2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Login2ViewController.m; sourceTree = "<group>"; };
+		344E7F3D22D5648700178C15 /* TimelineTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineTableViewController.h; sourceTree = "<group>"; };
+		344E7F3E22D5648700178C15 /* TimelineTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineTableViewController.m; sourceTree = "<group>"; };
 		48C463029AB3224C7ECE53F2 /* Pods-instagram-fbu-ca.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram-fbu-ca.release.xcconfig"; path = "Target Support Files/Pods-instagram-fbu-ca/Pods-instagram-fbu-ca.release.xcconfig"; sourceTree = "<group>"; };
 		750D13092FA98A9E49C1D963 /* Pods-instagram-fbu-caUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagram-fbu-caUITests.debug.xcconfig"; path = "Target Support Files/Pods-instagram-fbu-caUITests/Pods-instagram-fbu-caUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		78E0EF802E573E3F2308523A /* Pods_instagram_fbu_caUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instagram_fbu_caUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +161,8 @@
 				344E7F2F22D542EC00178C15 /* SignUpViewController.m */,
 				344E7F3322D5464E00178C15 /* Login2ViewController.h */,
 				344E7F3422D5464E00178C15 /* Login2ViewController.m */,
+				344E7F3D22D5648700178C15 /* TimelineTableViewController.h */,
+				344E7F3E22D5648700178C15 /* TimelineTableViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				344E7F3022D542EC00178C15 /* SignUpViewController.m in Sources */,
 				344E7F3522D5464E00178C15 /* Login2ViewController.m in Sources */,
 				341F4EC022D3F53400F1000C /* AppDelegate.m in Sources */,
+				344E7F3F22D5648700178C15 /* TimelineTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
