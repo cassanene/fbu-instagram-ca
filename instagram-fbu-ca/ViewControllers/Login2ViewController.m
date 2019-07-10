@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
 }
 
 - (IBAction)loginButton:(id)sender {
@@ -37,6 +38,10 @@
             [self performSegueWithIdentifier:@"timelineSegue" sender:nil];
         }
     }];
+}
+
+- (IBAction)onTap:(id)sender {
+    [self.view endEditing:YES];
 }
 
 
