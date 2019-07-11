@@ -205,6 +205,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableVIew" destination="0BF-wF-Sqz" id="8si-Br-PME"/>
+                        <outlet property="tableView" destination="0BF-wF-Sqz" id="6ag-Ik-dCU"/>
                         <segue destination="zm4-gA-dNE" kind="presentation" identifier="composepostSegue" id="pc7-fi-XcS"/>
                     </connections>
                 </viewController>
@@ -238,33 +240,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAN-eD-mfB">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="kAN-eD-mfB">
                                 <rect key="frame" x="16" y="64" width="121" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="lY7-RV-nne" appends="YES" id="lEW-Tr-77R"/>
+                                </connections>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Write a caption..." borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iXF-VM-k27">
-                                <rect key="frame" x="145" y="64" width="129" height="30"/>
+                                <rect key="frame" x="145" y="64" width="214" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nW-Yo-EfD">
-                                <rect key="frame" x="32" y="211" width="89" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select Image"/>
-                                <connections>
-                                    <action selector="selectimageButton:" destination="WRQ-yf-GLh" eventType="touchUpInside" id="cTK-uD-DAC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmi-AX-xuF">
-                                <rect key="frame" x="38" y="189" width="76" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Take Photo"/>
-                                <connections>
-                                    <action selector="takephotoButton:" destination="WRQ-yf-GLh" eventType="touchUpInside" id="CBj-3G-9jt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nSg-cV-7k1"/>
@@ -282,10 +272,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="captionTextField" destination="iXF-VM-k27" id="WM1-pw-Mto"/>
                         <outlet property="photoView" destination="kAN-eD-mfB" id="7Br-te-po9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t2x-hC-o6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lY7-RV-nne">
+                    <connections>
+                        <action selector="tapGesture:" destination="WRQ-yf-GLh" id="TzB-4u-qta"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="751.57421289355329"/>
         </scene>
@@ -309,6 +305,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="image_placeholder" width="375" height="375"/>
         <image name="insta_camera_btn" width="25" height="25"/>
     </resources>
 </document>

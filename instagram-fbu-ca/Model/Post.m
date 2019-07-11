@@ -23,6 +23,7 @@
 } 
 
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+//    brings in photo and caption into Parse
     
     Post *newPost = [Post new];
     newPost.image = [self getPFFileFromImage:image];

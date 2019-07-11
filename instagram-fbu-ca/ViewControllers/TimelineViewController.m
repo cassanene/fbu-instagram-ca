@@ -11,8 +11,12 @@
 #import "AppDelegate.h"
 #import "Login2ViewController.h"
 #import "PostCell.h"
+#import "Post.h"
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *posts;
 
 @end
 
@@ -37,6 +41,27 @@
     [self performSegueWithIdentifier:@"composepostSegue" sender:nil];
 }
 
+- (void) fetchPost {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query whereKey:@"likesCount" greaterThan:@100];
+    query.limit = 20;
+    
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    Post *newPost = [Post new];
+    // get the current user and assign it to "author" field. "author" field is now of Pointer type
+//    ????????
+    newPost.author = [PFUser currentUser];
+    
+    
+}
 
 
 /*
@@ -49,6 +74,29 @@
 }
 */
 
+
+
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    PostCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
+    Post* post = self.posts[indexPath.row];
+    cell.post = post;
+    
+    cell.captionLabel.text = post.caption;
+    PFFileObject *img = post.image;
+    [img getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {
+        UIImage *imageToLoad = [UIImage imageWithData:imageData];
+        [cell.postimageView setImage:imageToLoad];
+    }];
+    
+    
+    return cell;
+    
+}
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
 
 
 
