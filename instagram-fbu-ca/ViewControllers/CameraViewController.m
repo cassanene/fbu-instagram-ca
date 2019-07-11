@@ -51,6 +51,9 @@
     
     return newImage;
 }
+
+
+
 - (IBAction)shareButton:(id)sender {
     
     //    This is how you put in parameters into a completion block;getting using input feom the view controller
@@ -68,15 +71,16 @@
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-//    commenting it out when using the simulator on the PC to run your app
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
+  
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     }
     else {
         NSLog(@"Camera 🚫 available so we will use photo library instead");
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
 }
 
 
@@ -90,5 +94,5 @@
 }
 */
 
-}
+
 @end

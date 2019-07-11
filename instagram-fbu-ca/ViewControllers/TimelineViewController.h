@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TimelineViewController : UIViewController
 
+@property (strong, nonatomic) NSMutableArray *posts;
+
 @end
 
 NS_ASSUME_NONNULL_END
