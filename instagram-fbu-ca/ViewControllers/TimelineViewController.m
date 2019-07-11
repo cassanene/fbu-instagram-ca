@@ -16,7 +16,7 @@
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSMutableArray *posts;
 
 @end
 
@@ -24,7 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
 }
 - (IBAction)logoutButton:(id)sender {
         NSLog(@" CLicked User Logged out");
@@ -41,11 +42,28 @@
     [self performSegueWithIdentifier:@"composepostSegue" sender:nil];
 }
 
+- (void)getFeed {
+    
+    fetchPostcompletion:^(NSArray *posts, NSError *error) {
+        if (posts){
+             NSLog(@"😎😎😎 Successfully loaded home feed");
+            for (Post *post in posts) {
+                NSString *text = post.caption;
+                NSLog(@"%@", text);
+                
+            }
+            [self.tableView reloadData];
+        }
+        else {
+            
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+        
+    };
+}
 - (void) fetchPost {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"likesCount" greaterThan:@100];
-    query.limit = 20;
     
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -56,9 +74,8 @@
         }
     }];
     Post *newPost = [Post new];
-    // get the current user and assign it to "author" field. "author" field is now of Pointer type
-//    ????????
-    newPost.author = [PFUser currentUser];
+    newPost.caption = [PFUser currentUser];
+    newPost.image = [PFUser currentUser];
     
     
 }

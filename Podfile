@@ -8,6 +8,7 @@ target 'instagram-fbu-ca' do
   # Pods for instagram-fbu-ca
  # Pods for YOUR_APP
   pod 'Parse'
+  pod 'Parse/UI'
 
   target 'instagram-fbu-caTests' do
     inherit! :search_paths

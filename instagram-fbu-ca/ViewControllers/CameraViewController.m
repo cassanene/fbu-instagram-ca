@@ -52,7 +52,7 @@
 }
 - (IBAction)shareButton:(id)sender {
     
-//    This is how you put in parameters into a completion block
+    //    This is how you put in parameters into a completion block;getting using input feom the view controller
     [Post postUserImage:self.photoView.image withCaption:self.captionTextField.text withCompletion:nil];
     
      [self dismissViewControllerAnimated:true completion:nil];
