@@ -17,6 +17,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -29,6 +31,12 @@
     self.tableView.rowHeight = 300;
     
     [self fetchPost];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPost) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    [self.tableView addSubview:self.refreshControl];
+    [self.activityIndicator startAnimating];
 }
 - (IBAction)logoutButton:(id)sender {
         NSLog(@" CLicked User Logged out");
@@ -48,7 +56,8 @@
 - (void) fetchPost {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    
+    [query orderByDescending:@"createdAt"];
+    query.limit = 20;
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
@@ -60,6 +69,10 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
+        // Stop the activity indicator
+        [self.activityIndicator stopAnimating];
+        // Hides automatically if "Hides When Stopped" is enabled
+        [self.refreshControl endRefreshing];
     }];
     
     

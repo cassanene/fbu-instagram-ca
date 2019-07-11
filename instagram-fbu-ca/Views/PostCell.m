@@ -28,7 +28,6 @@
 
 - (void)setPost:(Post *)post {
     _post = post;
-   
 }
 
 @end

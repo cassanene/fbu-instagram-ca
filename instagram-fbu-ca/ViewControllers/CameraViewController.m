@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *captionTextField;
 
 
+
 @end
 
 @implementation CameraViewController
@@ -68,7 +69,7 @@
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
 //    commenting it out when using the simulator on the PC to run your app
-//    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     [self presentViewController:imagePickerVC animated:YES completion:nil];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
