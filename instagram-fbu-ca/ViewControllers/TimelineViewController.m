@@ -26,6 +26,9 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.rowHeight = 300;
+    
+    [self fetchPost];
 }
 - (IBAction)logoutButton:(id)sender {
         NSLog(@" CLicked User Logged out");
@@ -42,25 +45,6 @@
     [self performSegueWithIdentifier:@"composepostSegue" sender:nil];
 }
 
-- (void)getFeed {
-    
-    fetchPostcompletion:^(NSArray *posts, NSError *error) {
-        if (posts){
-             NSLog(@"😎😎😎 Successfully loaded home feed");
-            for (Post *post in posts) {
-                NSString *text = post.caption;
-                NSLog(@"%@", text);
-                
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
-        }
-        
-    };
-}
 - (void) fetchPost {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
@@ -69,13 +53,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             // do something with the array of object returned by the call
+            
+            self.posts = [NSMutableArray arrayWithArray:posts];
+            [self.tableView reloadData];
+            
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    Post *newPost = [Post new];
-    newPost.caption = [PFUser currentUser];
-    newPost.image = [PFUser currentUser];
     
     
 }
