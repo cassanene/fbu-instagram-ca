@@ -56,6 +56,7 @@
 - (void) fetchPost {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    
     [query orderByDescending:@"createdAt"];
     query.limit = 20;
     // fetch data asynchronously
