@@ -31,7 +31,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.rowHeight = 300;
+    self.tableView.rowHeight = 400;
     
     [self fetchPost];
     
@@ -61,6 +61,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     
     [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
     query.limit = 20;
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -69,6 +70,7 @@
             
             self.posts = [NSMutableArray arrayWithArray:posts];
             [self.tableView reloadData];
+
             
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -95,6 +97,7 @@
         Post* post = self.posts[indexPath.row];
         DetailsViewController *detailsViewController = [segue destinationViewController];
         detailsViewController.post = post;
+        
     }
     else if ([segue.identifier isEqualToString:@"composepostSegue"]){
         CameraViewController *cameraViewController = [segue destinationViewController];
@@ -119,7 +122,7 @@
     cell.timestamp.text = time.shortTimeAgoSinceNow;
     
     cell.captionLabel.text = post.caption;
-    cell.usernameLabel.text = post.userID;
+    cell.usernameLabel.text = post.author.username;
     PFFileObject *img = post.image;
     [img getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {
         UIImage *imageToLoad = [UIImage imageWithData:imageData];
