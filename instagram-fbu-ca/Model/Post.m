@@ -14,6 +14,7 @@
 @dynamic userID;
 @dynamic author;
 @dynamic caption;
+@dynamic timestamp;
 @dynamic image;
 @dynamic likeCount;
 @dynamic commentCount;

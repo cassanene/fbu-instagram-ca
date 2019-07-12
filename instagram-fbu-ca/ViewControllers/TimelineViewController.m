@@ -42,7 +42,7 @@
     [self.activityIndicator startAnimating];
 }
 - (IBAction)logoutButton:(id)sender {
-        NSLog(@" CLicked User Logged out");
+    NSLog(@" CLicked User Logged out");
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         NSLog(@"User Logged out");
         AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -116,9 +116,10 @@
     cell.post = post;
     NSDate *time =post.createdAt;
     
-    cell.timestamp.text = time.timeAgoSinceNow;
+    cell.timestamp.text = time.shortTimeAgoSinceNow;
     
     cell.captionLabel.text = post.caption;
+    cell.usernameLabel.text = post.userID;
     PFFileObject *img = post.image;
     [img getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {
         UIImage *imageToLoad = [UIImage imageWithData:imageData];
