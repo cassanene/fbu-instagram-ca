@@ -11,8 +11,10 @@
 #import "ProfilePostCollectionCell.h"
 
 
-@interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ProfileViewController () <UIImagePickerControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *posts;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profilepicView;
 
 @end
 
@@ -25,6 +27,16 @@
     self.collectionView.delegate = self;
     
     [self fetchPost];
+    
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    
+    layout.minimumInteritemSpacing = 5;
+    layout.minimumLineSpacing = 5;
+    //    This code sets the width and height of all of the cells which are basically the movie
+    CGFloat postsPerLine = 3;
+    CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postsPerLine - 1)) / postsPerLine;
+    CGFloat itemHeight = itemWidth * 1.5;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 - (void) fetchPost {
@@ -64,8 +76,6 @@
     ProfilePostCollectionCell* cell =  [collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePostCollectionCell" forIndexPath:indexPath];
     Post* post = self.posts[indexPath.row];
     cell.post = post;
-    
-
     PFFileObject *img = post.image;
     [img getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {
         UIImage *imageToLoad = [UIImage imageWithData:imageData];
@@ -80,6 +90,33 @@
         return self.posts.count;
 }
 
+- (IBAction)tapprofileView:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    // Get the image captured by the UIImagePickerController
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    // Do something with the images (based on your use case)
+    self.profilepicView.image = editedImage;
+    
+    // Dismiss UIImagePickerController to go back to your original view controller
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 
 
 @end
