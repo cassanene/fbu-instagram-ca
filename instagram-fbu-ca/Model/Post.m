@@ -31,7 +31,6 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
-    newPost.timestamp = 
     
     [newPost saveInBackgroundWithBlock: completion];
 }

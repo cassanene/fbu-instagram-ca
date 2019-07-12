@@ -226,7 +226,14 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hy-Wj-SiZ">
                                                     <rect key="frame" x="15" y="277" width="345" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZJ-Dg-jzP">
+                                                    <rect key="frame" x="292" y="282" width="68" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -236,6 +243,7 @@
                                         <connections>
                                             <outlet property="captionLabel" destination="9hy-Wj-SiZ" id="WQg-Fa-XOQ"/>
                                             <outlet property="postimageView" destination="Zyf-rQ-VvI" id="xzt-Gb-KYG"/>
+                                            <outlet property="timestamp" destination="LZJ-Dg-jzP" id="be9-AS-2Eh"/>
                                             <segue destination="Guz-cn-9L1" kind="push" identifier="detailsSegue" id="Vaz-fU-ftw"/>
                                         </connections>
                                     </tableViewCell>
@@ -260,7 +268,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="Ma8-en-cgh" id="U30-hV-ylu"/>
                         <outlet property="tableView" destination="0BF-wF-Sqz" id="6ag-Ik-dCU"/>
-                        <segue destination="zm4-gA-dNE" kind="presentation" identifier="composepostSegue" id="pc7-fi-XcS"/>
+                        <segue destination="amk-Lg-CJW" kind="presentation" identifier="composepostSegue" id="OxE-fA-IAk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WUl-if-j83" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -375,18 +383,22 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="nSg-cV-7k1"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="nnf-gJ-KK4"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="kho-Po-6a7">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Vej-Pf-eef">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="6cF-aV-eir">
                             <connections>
-                                <action selector="cancelButton:" destination="WRQ-yf-GLh" id="NiE-KK-sTI"/>
+                                <action selector="cancelButton:" destination="WRQ-yf-GLh" id="moD-NY-osN"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Share" id="sC4-0c-Jmd">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="s5G-tY-1MK">
                             <connections>
-                                <action selector="shareButton:" destination="WRQ-yf-GLh" id="wX7-ev-ZVS"/>
+                                <action selector="shareButton:" destination="WRQ-yf-GLh" id="LG9-YH-jTO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="captionTextField" destination="iXF-VM-k27" id="WM1-pw-Mto"/>
                         <outlet property="photoView" destination="kAN-eD-mfB" id="7Br-te-po9"/>
@@ -399,7 +411,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3703" y="1103"/>
+            <point key="canvasLocation" x="4036" y="958.4707646176912"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Kte-kM-wUw">
@@ -419,24 +431,6 @@
             </objects>
             <point key="canvasLocation" x="1039" y="36"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="VCh-IG-vK7">
-            <objects>
-                <navigationController storyboardIdentifier="CameraViewController" automaticallyAdjustsScrollViewInsets="NO" id="zm4-gA-dNE" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fdt-7K-3P3">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="WRQ-yf-GLh" kind="relationship" relationship="rootViewController" id="qO1-Oa-BHd"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qah-GD-LhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2250" y="940"/>
-        </scene>
         <!--Feed-->
         <scene sceneID="D6O-uM-7CD">
             <objects>
@@ -455,6 +449,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ot8-yB-AMm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2082" y="80"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gUU-WV-Nhg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="amk-Lg-CJW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ikY-sR-Sgr">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WRQ-yf-GLh" kind="relationship" relationship="rootViewController" id="JI3-uA-lFu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WTi-WK-Y2D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3096.8000000000002" y="958.4707646176912"/>
         </scene>
     </scenes>
     <resources>

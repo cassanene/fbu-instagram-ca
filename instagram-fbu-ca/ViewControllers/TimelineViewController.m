@@ -13,6 +13,8 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "DetailsViewController.h"
+#import "DateTools.h"
+#import "CameraViewController.h"
 
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -87,11 +89,17 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UITableViewCell *tappedCell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
-    Post* post = self.posts[indexPath.row];
-    DetailsViewController *detailsViewController = [segue destinationViewController];
-    detailsViewController.post = post;
+    if ([segue.identifier isEqualToString:@"detailsSegue"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tappedCell];
+        Post* post = self.posts[indexPath.row];
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        detailsViewController.post = post;
+    }
+    else if ([segue.identifier isEqualToString:@"composepostSegue"]){
+        CameraViewController *cameraViewController = [segue destinationViewController];
+    }
+    
 }
 
 
@@ -102,7 +110,10 @@
     PostCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post* post = self.posts[indexPath.row];
     cell.post = post;
+    NSDate *time =post.createdAt;
     
+    cell.timestamp.text = time.timeAgoSinceNow;
+
     cell.captionLabel.text = post.caption;
     PFFileObject *img = post.image;
     [img getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {

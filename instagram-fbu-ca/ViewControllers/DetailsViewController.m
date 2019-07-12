@@ -10,6 +10,7 @@
 #import "Post.h"
 #import "PostCell.h"
 #import "TimelineViewController.h"
+#import "DateTools.h"
 
 @interface DetailsViewController ()
 
@@ -20,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.detailstimestampLabel.text = self.post.timestamp.timeAgoSinceNow;
     self.detailscaptionLabel.text = self.post.caption;
     PFFileObject *img = self.post.image;
     [img getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {
