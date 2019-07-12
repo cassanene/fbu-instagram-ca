@@ -106,6 +106,10 @@
 
 
 
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.posts.count;
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post* post = self.posts[indexPath.row];
@@ -113,7 +117,7 @@
     NSDate *time =post.createdAt;
     
     cell.timestamp.text = time.timeAgoSinceNow;
-
+    
     cell.captionLabel.text = post.caption;
     PFFileObject *img = post.image;
     [img getDataInBackgroundWithBlock:^(NSData * imageData, NSError * error) {
@@ -123,13 +127,7 @@
     
     
     return cell;
-    
 }
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.posts.count;
-}
-
 
 
 @end
